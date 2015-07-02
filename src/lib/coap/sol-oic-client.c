@@ -460,7 +460,8 @@ _resource_request(struct sol_oic_client *client, struct sol_oic_resource *res,
     return sol_coap_send_packet_with_reply(client->server, req, &res->addr, cb, ctx) == 0;
 
 out:
-    sol_coap_packet_unref(req);
+    if (req)
+        sol_coap_packet_unref(req);
 out_no_req:
     free(ctx);
     return false;
