@@ -34,6 +34,21 @@
 # second, then converting the accumulator integer value to bits, the
 # first bit goes to Red, the second to Green and the third to Blue.
 
+# Diagram:
+#
+#  .-------.         .-------------.        .-------------.
+#  | timer |OUT-->INC| accumulator |OUT-->IN| int_to_byte |OUT-.
+#  `-------'         `-------------'        `-------------'    |
+#                .---------------------------------------------'
+#                |
+#                |    .--------------.              .--------.
+#                `->IN| byte_to_bits |OUT--+---->RED|        |
+#                     `--------------'     |        |        |
+#                                          +-->GREEN| RGBLed |
+#                                          |        |        |
+#                                          `--->BLUE|        |
+#                                                   `--------'
+
 accumulator(int/accumulator:setup_value=val:0|min:0|max:255|step:1)
 
 timer(wallclock/second) OUT -> INC accumulator

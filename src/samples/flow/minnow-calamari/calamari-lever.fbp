@@ -29,7 +29,14 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# This example links the Calamari lever (SPI) to the 7segment display,
+# This example links the Calamari lever (SPI) to the 7-segment display,
 # displaying the level from 0-15 (in hexadecimal)
+#
+# Diagram:
+#
+#  .---------------.            .---------------.
+#  | SegmentsLever |OUT--->VALUE| SevenSegments |
+#  `---------------'            `---------------'
+#
 
 lever(SegmentsLever) OUT -> VALUE seven_segments(SevenSegments)

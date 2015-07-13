@@ -34,6 +34,22 @@
 # sol-flow.conf in the current directory.
 #
 # The button presses will also go to console on stdout.
+#
+# Diagram:
+#
+# .---------.         .-----.
+# | Button1 |OUT-+->IN| log |
+# `---------'    |    `-----'
+#                |         .--------.
+#                `----->RED|        |
+#                 .-->GREEN| RGBLed |    .---------.          .------.
+#                 | .->BLUE|        |    | Button3 |OUT-+-->IN| log3 |
+#                 | |      `--------'    `---------'    |     `------'
+#                 | `-----------------------------------' 
+# .---------.     |    .------.
+# | Button2 |OUT--+->IN| log2 |
+# `---------'          `------'
+
 
 btn1(Button1) OUT -> RED led(RGBLed)
 btn1 OUT -> IN log(console:prefix="btn1_pressed ")

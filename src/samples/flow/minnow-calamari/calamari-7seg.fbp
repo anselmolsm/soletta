@@ -31,6 +31,24 @@
 
 # Uses a timer to loop an accumulator from 0 to 15 and display using
 # Intel MinnowBoard's Calamari Lure 7-segment display.
+#
+# It is an example of:
+#
+# - wallclock/second node type (emits a package per second)
+#
+# - accumulator node type
+#
+# - calamari/7seg (controls the Calamari Luire 7-segment display)
+#
+# - Using an alias (SevenSegments) for a node type configured in
+#   the .conf file
+#
+# Diagram:
+#
+# .-------.          .-------------.           .---------------.
+# | timer |OUT--->INC| accumulator |OUT-->VALUE| SevenSegments |
+# `-------'          `-------------'           `---------------'
+#
 
 accumulator(int/accumulator:setup_value=val:0|min:0|max:15|step:1)
 
