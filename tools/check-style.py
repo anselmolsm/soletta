@@ -104,6 +104,14 @@ def run_check(args, uncrustify, cfg_file):
         print("No source files (*.[ch]) changed for: %s" % args.target_refspec)
         return True
 
+    if args.ignore:
+        items=diff_list.split('\n')
+        for i in args.ignore:
+            if i in items:
+                items.remove(i)
+        print(items)
+        diff_list='\n'.join(items)
+
     cmd = "%s -c %s -l C %s" % \
           (uncrustify, cfg_file, diff_list.replace("\n", " "))
     output = run_command(cmd)
@@ -150,6 +158,8 @@ if __name__ == "__main__":
                         type=str, metavar="<config>")
     parser.add_argument("--color", metavar="WHEN", type=str, \
                         help="Use colors. WHEN can be always, auto and never.")
+    parser.add_argument("--ignore", nargs="+", type=str, \
+                        help="Dirs and files to be ignored.")
     parser.set_defaults(color="auto")
 
     args = parser.parse_args()
